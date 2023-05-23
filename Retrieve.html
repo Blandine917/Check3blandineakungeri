@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<h1>Retrieve data from database</h1>
+<table border="1">
+<tr>
+<td>name</td>
+<td>loc</td>
+<td>phone</td>
+<td>EM</td>
+<td>password</td>
+<td>message</td>
+</tr>
+<%
+
+try{
+connection = 
+DriverManager.getConnection("jdbc:mysql://localhost:3306/final","root","");
+statement=connection.createStatement();
+String sql ="select * from form";
+resultSet = statement.executeQuery(sql);
+while(resultSet.next()){
+}
+%>
+
+<tr>
+<td><%=resultSet.getString("name") %></td>
+<td><%=resultSet.getString("loc") %></td>
+<td><%=resultSet.getString("phone") %></td>
+<td><%=resultSet.getString("EM") %></td>
+<td><%=resultSet.getString("password") %></td>
+<td><%=resultSet.getString("message") %></td>
+</tr>
+<%
+}
+connection.close();
+} catch (Exception e) {
+e.printStackTrace();
+}
+%>
+</table>
+</body>
+</html>
